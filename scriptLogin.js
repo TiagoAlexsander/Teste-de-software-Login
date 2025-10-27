@@ -1,20 +1,24 @@
-function handleLogin(event) {
-    if (event && event.preventDefault) event.preventDefault(); // impede envio padrão
+document.getElementById("loginForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
 
     const cpf = document.getElementById("cpf").value;
     const senha = document.getElementById("senha").value;
 
-    console.log("CPF:", cpf, "Senha:", senha);
+    try {
+        const response = await fetch(`http://localhost:3000/login?cpf=${encodeURIComponent(cpf)}&senha=${encodeURIComponent(senha)}&operacao=handleLogin`);
+        const data = await response.json();
 
-    if (cpf === "123.456.789-00" && senha === "senha123") {
-        alert("Login bem-sucedido!");
-        window.location.href = "paginaUsuario.html";
-    } else {
-        alert("CPF ou senha inválidos. Tente novamente.");
+        if (data.status === "sucesso") {
+            alert(data.mensagem);
+            window.location.href = "paginaUsuario.html";
+        } else {
+            alert(data.mensagem);
+        }
+    } catch (error) {
+        alert("Erro ao conectar com o servidor.");
+        console.error(error);
     }
-}
-
-document.getElementById("loginForm").addEventListener("submit", handleLogin);
+});
 
 document.getElementById("cadastreSe").addEventListener("click", function(event){
     event.preventDefault();
