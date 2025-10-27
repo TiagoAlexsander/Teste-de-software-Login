@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperação de Senha</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Inter', sans-serif;
+        }
+        .container {
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="container bg-white p-8 rounded-xl shadow-lg">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">Recuperação de Senha</h1>
+        <p class="text-center text-gray-600 mb-6">
+            Digite o seu e-mail para receber um link de recuperação de senha.
+        </p>
+        
+        <form id="recover-form" class="space-y-4">
+            <div class="relative">
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Seu e-mail"
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
+                    required
+                >
+            </div>
+            
+            <button
+                type="submit"
+                class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-colors"
+            >
+                Enviar Link de Recuperação
+            </button>
+        </form>
+
+        <div id="message-container" class="mt-6 hidden">
+            <div id="message-text" class="text-center p-3 rounded-lg"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('recover-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio do formulário padrão
+            
+            const emailInput = document.getElementById('email');
+            const messageContainer = document.getElementById('message-container');
+            const messageText = document.getElementById('message-text');
+            const email = emailInput.value;
+            
+            // Simula o envio de e-mail e a validação
+            if (email) {
+                // Aqui você faria uma chamada real para um backend
+                // para enviar o e-mail de recuperação.
+
+                messageText.textContent = `Se um e-mail correspondente for encontrado, um link de recuperação será enviado para ${email}. Verifique sua caixa de entrada e spam.`;
+                messageText.className = 'bg-green-100 text-green-700 p-3 rounded-lg text-center';
+                messageContainer.classList.remove('hidden');
+                
+                // Opcional: desabilitar o botão para evitar múltiplos cliques
+                document.querySelector('button').disabled = true;
+
+            } else {
+                messageText.textContent = 'Por favor, digite um e-mail válido.';
+                messageText.className = 'bg-red-100 text-red-700 p-3 rounded-lg text-center';
+                messageContainer.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

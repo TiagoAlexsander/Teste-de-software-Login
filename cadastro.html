@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="styleCadastro.css">
+</head>
+<body>
+  <div class="container">
+    <div class="logo">Logo</div>
+    <form id="cadastroForm">
+      <div class="row">
+        <input type="text" placeholder="Nome Completo" required>
+        <input type="text" placeholder="CPF" required>
+      </div>
+      <input type="text" placeholder="Período de Gestão" required>
+      <input type="password" id="senha" placeholder="Crie uma Senha" required>
+      <input type="password" id="confirmaSenha" placeholder="Confirme a Senha" required>
+      <button type="submit">Cadastrar</button>
+    </form>
+    <div class="login-link">
+      Já tem uma conta? <a href="#" id="loginUsuario">Faça Login</a>
+    </div>
+  </div>
+
+  <script src="scriptCadastro.js"></script>
+</body>
+</html>
